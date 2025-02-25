@@ -6,6 +6,7 @@ typealias Point = Pair<Int, Int>
 
 enum class Direction {
     Left, Up, Right, Down;
+
     override fun toString() = name.first().toString()
 
     fun isHorizontal() = this == Left || this == Right
@@ -20,7 +21,7 @@ fun Point.move(directionChar: Char, steps: Int = 1) = when (directionChar) {
     'D' -> move(Down, steps)
     'L' -> move(Left, steps)
     'R' -> move(Right, steps)
-    else-> error("Unknown direction char: $directionChar")
+    else -> error("Unknown direction char: $directionChar")
 }
 
 fun Point.move(direction: Direction, steps: Int = 1) = when (direction) {
@@ -29,6 +30,15 @@ fun Point.move(direction: Direction, steps: Int = 1) = when (direction) {
     Left -> (first - steps) to second
     Right -> (first + steps) to second
 }
+
+fun Point.allAdjacents(includeDiagonals: Boolean = true) =
+    buildList<Point> {
+        this += listOf(move(Up), move(Left), move(Down), move(Right))
+        if (includeDiagonals) {
+            this += listOf(move(Up).move(Left), move(Up).move(Right), move(Down).move(Left), move(Down).move(Right))
+        }
+    }
+
 
 //Matrix related:
 open class Matrix<T : Any>(val maxX: Int, val maxY: Int, open val points: Map<Point, T>) {
@@ -51,7 +61,7 @@ open class Matrix<T : Any>(val maxX: Int, val maxY: Int, open val points: Map<Po
         Right -> (((first + 1).takeIf { it <= maxX } ?: maxX) to second)
     }
 
-    protected fun Point.allAround() =
+    protected fun Point.allAroundIn() =
         listOf(
             move(Up), move(Left), move(Down), move(Right),
             move(Up).move(Left), move(Up).move(Right), move(Down).move(Left), move(Down).move(Right)
