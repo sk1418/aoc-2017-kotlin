@@ -7,17 +7,15 @@ fun main() {
     val input = readInput(today)
     val testInput = readTestInput(today)
 
-    fun part1(input: List<String>): Int {
-        return 0
-    }
+    fun part1(input: List<String>): Int = input.count { it.split(" ").let { it.size == it.distinct().size } }
 
-    fun part2(input: List<String>): Int {
-        return 0
-    }
+    fun part2(input: List<String>): Int =
+        input.count {
+            it.split(" ").map { w -> w.groupingBy { it }.eachCount() }.let { it.size == it.distinct().size }
+        }
 
-    chkTestInput(Part1, testInput, 0) { part1(it) }
     solve(Part1, input) { part1(it) }
 
-    chkTestInput(Part2, testInput, 0) { part2(it) }
+    chkTestInput(Part2, testInput, 3) { part2(it) }
     solve(Part2, input) { part2(it) }
 }
