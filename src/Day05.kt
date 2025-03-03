@@ -7,10 +7,10 @@ fun main() {
     val input = readInput(today)
     val testInput = readTestInput(today)
 
-    fun getJumpSeq(input: List<String>) = input.map { it.toInt() }.toMutableList()
+    fun getDay05(input: List<String>) = Day05(input.map { it.toInt() }.toMutableList())
 
-    fun part1(input: List<String>) = Day05(getJumpSeq(input)).jump { curOffset: Int -> curOffset + 1 }
-    fun part2(input: List<String>) = Day05(getJumpSeq(input)).jump { curOffset: Int -> curOffset + if (curOffset >= 3) -1 else 1 }
+    fun part1(input: List<String>) = getDay05(input).jump { curOffset: Int -> curOffset + 1 }
+    fun part2(input: List<String>) = getDay05(input).jump { curOffset: Int -> curOffset + if (curOffset >= 3) -1 else 1 }
 
 
     chkTestInput(Part1, testInput, 5) { part1(it) }
