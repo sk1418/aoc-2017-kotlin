@@ -29,7 +29,7 @@ fun String.swapChar(idx1: Int, idx2: Int) = toCharArray().also {
 fun String.reverseBetween(idx1: Int, idx2: Int): String {
     val from = minOf(idx1, idx2)
     val to = maxOf(idx1, idx2)
-    return substring(0 until from) + substring(from..to).reversed() + substring(to + 1)
+    return substring(0 ..< from) + substring(from..to).reversed() + substring(to + 1)
 
 }
 
