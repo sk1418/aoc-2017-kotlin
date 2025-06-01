@@ -19,7 +19,7 @@ fun main() {
     solve(Part2, input) { part2(255, it) }
 }
 
-private data class Day10(val maxElement: Int, val lengthStr: String) {
+data class Day10(val maxElement: Int, val lengthStr: String) {
 
     val theList: MutableList<Int> = (0..maxElement).toMutableList()
     var cur = 0
