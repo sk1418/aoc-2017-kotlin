@@ -3,7 +3,7 @@ package utils
 import java.util.*
 
 // list
-fun List<Char>.joinChars() = joinToString(separator = "") { "$it" }
+fun List<Char>.joinChars(): String = joinToString(separator = "") { "$it" }
 
 infix fun <T> List<T>.rotateRight(steps: Int): List<T> {
     val times = steps % size
