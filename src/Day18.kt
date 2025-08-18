@@ -54,8 +54,8 @@ private data class Day18Part1(val instructions: List<Instruction>) {
                 "add" -> varMap[x] = readValue(x) + readValue(y)
                 "mul" -> varMap[x] = readValue(x) * readValue(y)
                 "mod" -> varMap[x] = readValue(x) % readValue(y)
-                "rcv" -> if (readValue(x) != 0L) return varMap["snd"] ?: 0L
-                "jgz" -> if (readValue(x) > 0) {
+                "rcv" if (readValue(x) != 0L) -> return varMap["snd"] ?: 0L
+                "jgz" if (readValue(x) > 0) -> {
                     cur += readValue(y).toInt(); continue
                 }
             }
